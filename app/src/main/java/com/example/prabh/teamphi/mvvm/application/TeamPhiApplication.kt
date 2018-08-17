@@ -12,7 +12,7 @@ import com.example.prabh.teamphi.dagger.submodule.MainActivityModule
 abstract class TeamPhiApplication : AppCompatActivity() {
 
 
-    private val activityComponent:ActivityComponent by lazy{
+    private val activityComponent: ActivityComponent by lazy {
         DaggerActivityComponent
                 .builder()
                 .activityModule(ActivityModule(this))
@@ -25,6 +25,10 @@ abstract class TeamPhiApplication : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+
+
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         activityComponent.inject(this)
     }
