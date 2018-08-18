@@ -51,9 +51,11 @@ class MainActivity : TeamPhiApplication() {
         }
     }
 
+
     private fun processResult(response: Response) {
         val loginResult= response.result as LoginResult
-        login.setText(loginResult.token)
+
+        //login.setText(loginResult.token)
 
     }
 
