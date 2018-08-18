@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.prabh.teamphi.Main2Activity">
+    tools:context="com.example.prabh.teamphi.mvvm.activity.RegisterActivity.RegisterActivity">
 
 
     <ImageView
@@ -90,7 +90,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"

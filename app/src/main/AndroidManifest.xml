@@ -19,7 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Main2Activity"></activity>
+        <activity
+            android:name=".mvvm.activity.Bills.BillActivity"
+            android:label="@string/title_activity_bill"
+            android:theme="@style/AppTheme"></activity>
+        <activity android:name=".mvvm.activity.RegisterActivity.RegisterActivity"></activity>
     </application>
 
 </manifest>
