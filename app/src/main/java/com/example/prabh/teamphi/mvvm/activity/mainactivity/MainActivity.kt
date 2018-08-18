@@ -1,10 +1,12 @@
 package com.example.prabh.teamphi.mvvm.activity.mainactivity
 
 import android.arch.lifecycle.Observer
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.example.prabh.teamphi.R
+import com.example.prabh.teamphi.mvvm.activity.Bills.BillActivity
 import com.example.prabh.teamphi.mvvm.application.TeamPhiApplication
 import com.example.prabh.teamphi.retrofit.model.LoginResult
 import com.example.prabh.teamphi.utility.Response
@@ -22,7 +24,9 @@ class MainActivity : TeamPhiApplication() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         mainActivityComponent.inject(this)
-        initialise()
+        login.setOnClickListener{
+            initialise()
+        }
     }
     private fun initialise()
     {
@@ -43,7 +47,7 @@ class MainActivity : TeamPhiApplication() {
                 processResult(response)
             }
             Status.ERROR -> {
-                Toast.makeText(this,"No net",Toast.LENGTH_LONG).show()
+                Toast.makeText(this,"Invalid Id Password",Toast.LENGTH_LONG).show()
             }
             Status.LOADING -> {
                 Log.v("Login","Loading")
@@ -51,16 +55,13 @@ class MainActivity : TeamPhiApplication() {
         }
     }
 
-
     private fun processResult(response: Response) {
-        val loginResult= response.result as LoginResult
-
-        //login.setText(loginResult.token)
-
+        val intent = Intent(this,BillActivity::class.java)
+        startActivity(intent)
     }
 
     private fun getInterest() {
-        mainActivityViewModel.getData("prabhat.singh374@gmail.com","helloworld")
+        mainActivityViewModel.getData(username.text.toString(),password.text.toString())
 
     }
 }
