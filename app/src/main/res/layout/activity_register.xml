@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.example.prabh.teamphi.mvvm.activity.RegisterActivity.RegisterActivity">
 
-
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="200dp"
@@ -14,7 +13,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="12dp"
-        android:contentDescription="@null"
         app:srcCompat="@drawable/logo1" />
 
     <EditText
@@ -23,11 +21,10 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/editText4"
         android:layout_below="@+id/imageView3"
+        android:layout_marginTop="10dp"
         android:drawableLeft="@drawable/name"
-        android:ems="10"
         android:hint="  Name"
-        android:inputType="textPersonName"
-        android:text="" />
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/editText4"
@@ -38,8 +35,18 @@
         android:drawableLeft="@drawable/email"
         android:ems="10"
         android:hint="  Email"
-        android:inputType="textPersonName"
-        android:text="" />
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/editText5"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/editText4"
+        android:layout_below="@+id/editText4"
+        android:drawableLeft="@drawable/phone"
+        android:ems="10"
+        android:hint="  Mobile No"
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/editText6"
@@ -50,7 +57,7 @@
         android:drawableLeft="@drawable/lock"
         android:ems="10"
         android:hint="  Password"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:text="" />
 
     <EditText
@@ -62,35 +69,29 @@
         android:drawableLeft="@drawable/lock"
         android:ems="10"
         android:hint="  Confirm Password"
-        android:inputType="textPersonName"
-        android:text="" />
+        android:inputType="textPassword" />
 
     <android.support.v7.widget.CardView
         android:layout_width="170dp"
         android:layout_height="35dp"
         android:layout_below="@+id/editText7"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="149dp"
-        app:cardCornerRadius="24dp"
-        app:cardBackgroundColor="#00b300"
         android:layout_centerInParent="true"
-        android:id="@+id/cardView2">
+        android:layout_marginTop="149dp"
+        app:cardBackgroundColor="#00b300"
+        app:cardCornerRadius="24dp">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Request Login"
+                android:textColor="#000000" />
+        </RelativeLayout>
     </android.support.v7.widget.CardView>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/cardView2"
-        android:layout_marginBottom="44dp">
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Request Login"
-            android:textColor="#000000" />
-    </RelativeLayout>
 </RelativeLayout>
