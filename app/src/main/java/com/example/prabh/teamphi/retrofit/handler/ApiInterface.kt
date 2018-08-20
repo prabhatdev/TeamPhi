@@ -2,6 +2,7 @@ package com.example.prabh.teamphi.retrofit.handler
 
 import android.support.annotation.Keep
 import com.example.prabh.teamphi.retrofit.model.LoginResult
+import com.example.prabh.teamphi.retrofit.model.RegisterUser
 import io.reactivex.Observable
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -19,4 +20,7 @@ interface ApiInterface {
     @POST("api/Users/Login")
     fun loginUser(@Field("Username") userName : String,@Field("Password") password : String) : Observable<LoginResult>
 
+    @FormUrlEncoded
+    @POST("api/Users/RegisterUser")
+    fun registerUser(@Field("Username") userName:String,@Field("Name") name:String,@Field("Designation") designation:String,@Field("Password") password: String) : Observable<RegisterUser>
 }

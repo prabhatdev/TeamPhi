@@ -22,4 +22,5 @@ class ActivityModule(private val teamPhiApplication: TeamPhiApplication) {
     @Singleton
     fun provideUtil(context: Context): Utils = Utils.provideUtil(context)
 
+
 }

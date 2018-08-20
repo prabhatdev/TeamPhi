@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import com.example.prabh.teamphi.R
 import com.example.prabh.teamphi.mvvm.activity.Bills.BillActivity
+import com.example.prabh.teamphi.mvvm.activity.RegisterActivity.RegisterActivity
 import com.example.prabh.teamphi.mvvm.application.TeamPhiApplication
 import com.example.prabh.teamphi.retrofit.model.LoginResult
 import com.example.prabh.teamphi.utility.Response
@@ -24,6 +25,10 @@ class MainActivity : TeamPhiApplication() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         mainActivityComponent.inject(this)
+        register.setOnClickListener{
+            val intent = Intent(this,RegisterActivity::class.java)
+            startActivity(intent)
+        }
         login.setOnClickListener{
             initialise()
         }

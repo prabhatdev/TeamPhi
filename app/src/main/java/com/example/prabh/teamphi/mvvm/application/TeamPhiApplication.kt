@@ -7,7 +7,9 @@ import com.example.prabh.teamphi.dagger.component.ActivityComponent
 import com.example.prabh.teamphi.dagger.component.DaggerActivityComponent
 import com.example.prabh.teamphi.dagger.module.ActivityModule
 import com.example.prabh.teamphi.dagger.subcomponent.MainActivityComponent
+import com.example.prabh.teamphi.dagger.subcomponent.RegisterActivityComponent
 import com.example.prabh.teamphi.dagger.submodule.MainActivityModule
+import com.example.prabh.teamphi.dagger.submodule.RegisterActivityModule
 
 abstract class TeamPhiApplication : AppCompatActivity() {
 
@@ -23,12 +25,12 @@ abstract class TeamPhiApplication : AppCompatActivity() {
         activityComponent.plusMainActivityComponent(MainActivityModule())
     }
 
+    val registerActivityComponent:RegisterActivityComponent by lazy {
+        activityComponent.plusRegisterActivityComponent(RegisterActivityModule())
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
-
-
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         activityComponent.inject(this)
     }
