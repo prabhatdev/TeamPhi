@@ -22,8 +22,13 @@
         <activity
             android:name=".mvvm.activity.Bills.BillActivity"
             android:label="@string/title_activity_bill"
-            android:theme="@style/AppTheme"></activity>
-        <activity android:name=".mvvm.activity.RegisterActivity.RegisterActivity"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".mvvm.activity.RegisterActivity.RegisterActivity" />
+        <activity android:name=".task"></activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
