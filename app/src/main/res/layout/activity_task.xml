@@ -91,7 +91,6 @@
                 android:id="@+id/price"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/textView13"
                 android:layout_alignBottom="@+id/textView13"
                 android:layout_toEndOf="@+id/textView12" />
 
@@ -99,7 +98,7 @@
                 android:id="@+id/quantity"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/price"
+                android:layout_alignBottom="@+id/textView14"
                 android:layout_toEndOf="@+id/textView14" />
 
             <TextView
