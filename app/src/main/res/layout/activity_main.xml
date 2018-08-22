@@ -15,7 +15,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="12dp"
         android:contentDescription="@null"
-        app:srcCompat="@drawable/logo1" />
+        android:src="@drawable/logo1" />
 
     <EditText
         android:id="@+id/username"
@@ -24,9 +24,9 @@
         android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="33dp"
-        android:drawableLeft="@drawable/name"
+        android:drawableStart="@drawable/name"
         android:ems="10"
-        android:hint="  Username"
+        android:hint="Username"
         android:inputType="textPersonName"
         android:text="" />
 
@@ -36,11 +36,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/username"
         android:layout_centerHorizontal="true"
-        android:drawableLeft="@drawable/lock"
-        android:ems="10"
-        android:hint="  Password"
-        android:inputType="textPassword"
-        android:text="" />
+        android:drawableStart="@drawable/lock"
+        android:hint="Password"
+        android:inputType="textPassword" />
 
     <android.support.v7.widget.CardView
         android:id="@+id/cardView"
@@ -50,7 +48,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="39dp"
         app:cardBackgroundColor="#00b300"
-        app:cardCornerRadius="18dp">
+        app:cardCornerRadius="24dp">
 
         <RelativeLayout
             android:id="@+id/login"
@@ -65,13 +63,12 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="LOGIN"
-                android:textColor="#000000"
-                android:visibility="visible" />
+                android:textColor="#000000" />
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/cardView"
@@ -79,6 +76,4 @@
         android:layout_marginTop="22dp"
         android:text="Dont have account? Register here."
         android:textColor="#0059b3" />
-
-
 </RelativeLayout>

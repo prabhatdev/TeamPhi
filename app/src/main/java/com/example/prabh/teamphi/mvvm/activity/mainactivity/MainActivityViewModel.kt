@@ -30,4 +30,9 @@ class MainActivityViewModel : ViewModel()
                         { throwable:Throwable -> response.value = Response.error(ApiType.LOGIN_USER,throwable) }
                 ))
     }
+
+    override fun onCleared() {
+        super.onCleared()
+        compositeDisposable.clear()
+    }
 }
