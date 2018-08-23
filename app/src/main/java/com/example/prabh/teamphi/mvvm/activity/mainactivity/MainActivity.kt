@@ -6,10 +6,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.example.prabh.teamphi.R
-import com.example.prabh.teamphi.mvvm.activity.Bills.BillActivity
+import com.example.prabh.teamphi.mvvm.activity.Task.TaskActivity
 import com.example.prabh.teamphi.mvvm.activity.RegisterActivity.RegisterActivity
 import com.example.prabh.teamphi.mvvm.application.TeamPhiApplication
-import com.example.prabh.teamphi.retrofit.model.LoginResult
 import com.example.prabh.teamphi.utility.Response
 import com.example.prabh.teamphi.utility.Status
 import kotlinx.android.synthetic.main.activity_main.*
@@ -30,7 +29,8 @@ class MainActivity : TeamPhiApplication() {
             startActivity(intent)
         }
         login.setOnClickListener{
-            initialise()
+            val intent=Intent(this,TaskActivity::class.java)
+            startActivity(intent)
         }
     }
     private fun initialise()
@@ -61,7 +61,7 @@ class MainActivity : TeamPhiApplication() {
     }
 
     private fun processResult(response: Response) {
-        val intent = Intent(this,BillActivity::class.java)
+        val intent = Intent(this,TaskActivity::class.java)
         startActivity(intent)
     }
 

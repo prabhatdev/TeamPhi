@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".mvvm.activity.Bills.BillActivity"
-    tools:showIn="@layout/activity_bill">
+    tools:context=".mvvm.activity.Task.TaskActivity"
+    tools:showIn="@layout/activity_task">
 
 </android.support.constraint.ConstraintLayout>

@@ -8,8 +8,10 @@ import com.example.prabh.teamphi.dagger.component.DaggerActivityComponent
 import com.example.prabh.teamphi.dagger.module.ActivityModule
 import com.example.prabh.teamphi.dagger.subcomponent.MainActivityComponent
 import com.example.prabh.teamphi.dagger.subcomponent.RegisterActivityComponent
+import com.example.prabh.teamphi.dagger.subcomponent.TaskActivityComponent
 import com.example.prabh.teamphi.dagger.submodule.MainActivityModule
 import com.example.prabh.teamphi.dagger.submodule.RegisterActivityModule
+import com.example.prabh.teamphi.dagger.submodule.TaskActivityModule
 
 abstract class TeamPhiApplication : AppCompatActivity() {
 
@@ -25,8 +27,12 @@ abstract class TeamPhiApplication : AppCompatActivity() {
         activityComponent.plusMainActivityComponent(MainActivityModule())
     }
 
-    val registerActivityComponent:RegisterActivityComponent by lazy {
+    val registerActivityComponent: RegisterActivityComponent by lazy {
         activityComponent.plusRegisterActivityComponent(RegisterActivityModule())
+    }
+
+    val taskActivityComponent: TaskActivityComponent by lazy {
+        activityComponent.plusTaskActivityComponent(TaskActivityModule())
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

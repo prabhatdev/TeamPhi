@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".mvvm.activity.Bills.BillActivity"
+            android:name=".mvvm.activity.Task.TaskActivity"
             android:label="@string/title_activity_bill"
             android:theme="@style/AppTheme" />
         <activity android:name=".mvvm.activity.RegisterActivity.RegisterActivity" />

@@ -6,12 +6,11 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.example.prabh.teamphi.R
-import com.example.prabh.teamphi.mvvm.activity.Bills.BillActivity
 import com.example.prabh.teamphi.mvvm.activity.mainactivity.MainActivity
 import com.example.prabh.teamphi.mvvm.application.TeamPhiApplication
+import com.example.prabh.teamphi.retrofit.model.RegisterUser
 import com.example.prabh.teamphi.utility.Response
 import com.example.prabh.teamphi.utility.Status
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_register.*
 import javax.inject.Inject
 
@@ -41,14 +40,15 @@ class RegisterActivity : TeamPhiApplication() {
 
     }
 
-    private fun processResponse(reponse: Response?) {
-        when (reponse!!.status) {
+    private fun processResponse(response: Response?) {
+        when (response!!.status) {
             Status.SUCCESS -> {
                 Log.v("Register", "API call successful")
-                processResult()
+                processResult(response)
             }
             Status.ERROR -> {
-                Toast.makeText(this, "Username Already Exist", Toast.LENGTH_SHORT).show()
+                processResult(response)
+                //Toast.makeText(this, "Username Already Exist", Toast.LENGTH_SHORT).show()
             }
             Status.LOADING -> {
                 Log.v("Register", "API Loading")
@@ -57,8 +57,10 @@ class RegisterActivity : TeamPhiApplication() {
 
     }
 
-    private fun processResult() {
+    private fun processResult(response: Response) {
         val intent = Intent(this, MainActivity::class.java)
+        val registerUser=response.result as RegisterUser
+        Toast.makeText(this,registerUser.message,Toast.LENGTH_SHORT).show()
         startActivity(intent)
         finish()
     }

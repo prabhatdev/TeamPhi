@@ -3,8 +3,10 @@ package com.example.prabh.teamphi.dagger.component
 import com.example.prabh.teamphi.dagger.module.ActivityModule
 import com.example.prabh.teamphi.dagger.subcomponent.MainActivityComponent
 import com.example.prabh.teamphi.dagger.subcomponent.RegisterActivityComponent
+import com.example.prabh.teamphi.dagger.subcomponent.TaskActivityComponent
 import com.example.prabh.teamphi.dagger.submodule.MainActivityModule
 import com.example.prabh.teamphi.dagger.submodule.RegisterActivityModule
+import com.example.prabh.teamphi.dagger.submodule.TaskActivityModule
 import com.example.prabh.teamphi.mvvm.activity.RegisterActivity.RegisterActivity
 import com.example.prabh.teamphi.mvvm.activity.RegisterActivity.RegisterActivityViewModel
 import com.example.prabh.teamphi.mvvm.activity.mainactivity.MainActivityViewModel
@@ -21,4 +23,6 @@ interface ActivityComponent{
     fun plusMainActivityComponent(mainActivityModule: MainActivityModule) : MainActivityComponent
 
     fun plusRegisterActivityComponent(registerActivityModule: RegisterActivityModule) : RegisterActivityComponent
+
+    fun plusTaskActivityComponent(taskActivityModule: TaskActivityModule):TaskActivityComponent
 }
