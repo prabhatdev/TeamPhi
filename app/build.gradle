@@ -63,8 +63,8 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     implementation "com.google.dagger:dagger-android-support:$dagger_version"
 
-
     implementation 'android.arch.lifecycle:extensions:1.1.1'
+
 }
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -79,6 +79,14 @@ dependencies {
 dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
 }
+dependencies {
+    implementation 'com.android.support.constraint:constraint-layout:+'
+}
+
+dependencies {
+    implementation 'com.android.support.constraint:constraint-layout:+'
+}
+
 dependencies {
     implementation 'com.android.support.constraint:constraint-layout:+'
 }

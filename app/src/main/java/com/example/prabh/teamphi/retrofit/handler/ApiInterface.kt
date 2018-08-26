@@ -1,9 +1,7 @@
 package com.example.prabh.teamphi.retrofit.handler
 
 import android.support.annotation.Keep
-import com.example.prabh.teamphi.retrofit.model.LoginResult
-import com.example.prabh.teamphi.retrofit.model.RegisterUser
-import com.example.prabh.teamphi.retrofit.model.TaskUser
+import com.example.prabh.teamphi.retrofit.model.*
 import io.reactivex.Observable
 import retrofit2.http.*
 
@@ -21,4 +19,20 @@ interface ApiInterface {
     @GET("api/Task/GetAllTasks")
     fun getAllTasks(@Header("token") token: String): Observable<TaskUser>
 
+    @FormUrlEncoded
+    @POST("api/Task/AddTask")
+    fun sendTask(@Header("token") token: String, @Field("TaskName") taskName: String, @Field("CreatedForUsername") createdForUsername: String, @Query("Username") userName: String): Observable<AddTask>
+
+    @GET("api/Task/GetItemsFor")
+    fun getItems(@Header("token") toke:String,@Query("TaskId") taskId: String):Observable<ItemsResult>
+
+    @FormUrlEncoded
+    @POST("api/Task/AddItem")
+    fun sendItem(@Header("token") token:String, @Field("TaskId") taskId:String,@Field("ItemName") itemName:String,
+                 @Field("ItemType") itemType:String, @Field("Price") price:Double,@Field("Quantity") quantity:Int,
+                 @Field("PurchaseDate") purchaseDate:String,@Field("BillImageURL") billImageURL:String, @Query("Username") userName:String):Observable<AddItem>
+
+
+    @GET("api/Types/GetItemTypes")
+    fun getItemType(@Header("token") token:String):Observable<ItemType>
 }

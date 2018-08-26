@@ -9,6 +9,10 @@ class Item
     @Expose
     val itemId:String?=null
 
+    @SerializedName("TaskId")
+    @Expose
+    val taskId:String?=null
+
     @SerializedName("ItemName")
     @Expose
     val itemName:String?=null

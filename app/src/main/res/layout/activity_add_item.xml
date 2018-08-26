@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".mvvm.activity.AddTaskActivity.AddItemActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:elevation="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/baloo"
+            android:text="Add Items"
+            android:textSize="25dp" />
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/item_name_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/background_edit_text">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/get_item_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/baloo"
+            android:hint="Item Name"
+            android:textSize="14sp" />
+    </android.support.design.widget.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/item_type_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_name_layout"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_name_layout"
+            android:fontFamily="@font/baloo"
+            android:text="Item Type"
+            android:textSize="15dp" />
+
+        <Spinner
+            android:id="@+id/item_type"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:textAlignment="textEnd" />
+    </LinearLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/item_price_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_type_layout"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/background_edit_text">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/item_price"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/baloo"
+            android:hint="Item Price"
+            android:textSize="14sp" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/quantity_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_price_layout"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/background_edit_text">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/get_quantity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/baloo"
+            android:hint="Quantity"
+            android:textSize="14sp" />
+    </android.support.design.widget.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/purchase_date_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/quantity_layout"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_name_layout"
+            android:fontFamily="@font/baloo"
+            android:text="Purchase Date"
+            android:textSize="15dp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/get_date_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:fontFamily="@font/baloo"
+            tools:text="28/08/2018"
+            android:text="          "
+            android:layout_gravity="center"/>
+
+        <ImageView
+            android:id="@+id/calendar"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/calendar" />
+
+    </LinearLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/bill_image_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/purchase_date_layout"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/background_edit_text">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/bill_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/baloo"
+            android:hint="Bill Image URL"
+            android:textSize="14sp" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/submit_items"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:fontFamily="@font/baloo"
+        android:text="Submit"
+        android:textColor="#fff"
+        android:textSize="20sp" />
+
+</RelativeLayout>

@@ -1,4 +1,4 @@
-package com.example.prabh.teamphi.mvvm.activity.Task
+package com.example.prabh.teamphi.mvvm.activity.taskactivity
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider

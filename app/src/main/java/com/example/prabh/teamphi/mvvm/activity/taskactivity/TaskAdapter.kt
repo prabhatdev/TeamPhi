@@ -1,10 +1,12 @@
-package com.example.prabh.teamphi.mvvm.activity.Task
+package com.example.prabh.teamphi.mvvm.activity.taskactivity
 
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.prabh.teamphi.R
+import com.example.prabh.teamphi.mvvm.activity.itemactivity.ItemActivity
 import com.example.prabh.teamphi.retrofit.model.Tasks
 import kotlinx.android.synthetic.main.task_recycler.view.*
 
@@ -25,8 +27,15 @@ class TaskAdapter(val tasks: ArrayList<Tasks>) : RecyclerView.Adapter<TaskAdapte
         fun bindData(task: Tasks) {
             itemView.task_name.text = task.taskName
             itemView.cost.text = task.totalCost
-            itemView.task_quantity.text = task.items?.size.toString()
-            itemView.date.text=task.creationDate
+            itemView.task_quantity.text = task.itemCount.toString()
+            itemView.date.text = task.creationDate?.subSequence(0, 10)
+            itemView.created_by.text = task.createdByUserName
+            itemView.task.setOnClickListener {
+                val intent = Intent(itemView.context, ItemActivity::class.java)
+                intent.putExtra("TASK_ID", task.taskId)
+                itemView.context.startActivity(intent)
+            }
         }
     }
+
 }

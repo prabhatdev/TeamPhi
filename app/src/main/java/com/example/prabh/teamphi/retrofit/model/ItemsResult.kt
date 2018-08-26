@@ -3,7 +3,7 @@ package com.example.prabh.teamphi.retrofit.model
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class LoginResult
+class ItemsResult
 {
     @SerializedName("status")
     @Expose
@@ -11,5 +11,5 @@ class LoginResult
 
     @SerializedName("data")
     @Expose
-    val data:Login?=null
+    val data:ArrayList<Item>?=null
 }

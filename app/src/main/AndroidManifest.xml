@@ -20,15 +20,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".mvvm.activity.Task.TaskActivity"
+            android:name=".mvvm.activity.taskactivity.TaskActivity"
             android:label="@string/title_activity_bill"
             android:theme="@style/AppTheme" />
-        <activity android:name=".mvvm.activity.RegisterActivity.RegisterActivity" />
-        <activity android:name=".task"></activity>
+        <activity android:name=".mvvm.activity.registeractivity.RegisterActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <activity android:name=".mvvm.activity.AddTaskActivity.AddItemActivity" />
+        <activity android:name=".mvvm.activity.itemactivity.ItemActivity"></activity>
     </application>
 
 </manifest>

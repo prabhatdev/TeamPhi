@@ -1,4 +1,4 @@
-package com.example.prabh.teamphi.mvvm.activity.RegisterActivity
+package com.example.prabh.teamphi.mvvm.activity.registeractivity
 
 import android.arch.lifecycle.Observer
 import android.content.Intent
@@ -48,7 +48,6 @@ class RegisterActivity : TeamPhiApplication() {
             }
             Status.ERROR -> {
                 processResult(response)
-                //Toast.makeText(this, "Username Already Exist", Toast.LENGTH_SHORT).show()
             }
             Status.LOADING -> {
                 Log.v("Register", "API Loading")

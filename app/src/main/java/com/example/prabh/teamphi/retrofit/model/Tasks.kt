@@ -12,9 +12,9 @@ class Tasks {
     @Expose
     val taskName: String? = null
 
-    @SerializedName("Items")
+    @SerializedName("ItemCount")
     @Expose
-    val items:List<Item>? = null
+    val itemCount:Int?= null
 
     @SerializedName("AssignedUserName")
     @Expose

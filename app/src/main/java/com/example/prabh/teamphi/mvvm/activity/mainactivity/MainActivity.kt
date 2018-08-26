@@ -6,10 +6,13 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.example.prabh.teamphi.R
-import com.example.prabh.teamphi.mvvm.activity.Task.TaskActivity
-import com.example.prabh.teamphi.mvvm.activity.RegisterActivity.RegisterActivity
+import com.example.prabh.teamphi.mvvm.activity.registeractivity.RegisterActivity
+import com.example.prabh.teamphi.mvvm.activity.taskactivity.TaskActivity
 import com.example.prabh.teamphi.mvvm.application.TeamPhiApplication
+import com.example.prabh.teamphi.retrofit.model.LoginResult
+import com.example.prabh.teamphi.utility.ApiType
 import com.example.prabh.teamphi.utility.Response
+import com.example.prabh.teamphi.utility.Session
 import com.example.prabh.teamphi.utility.Status
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -24,18 +27,27 @@ class MainActivity : TeamPhiApplication() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         mainActivityComponent.inject(this)
-        register.setOnClickListener{
-            val intent = Intent(this,RegisterActivity::class.java)
+        initialise()
+        if (session.isLoggedIn()) {
+            username.setText(session.getStringValue(Session.USERNAME))
+            password.setText(session.getStringValue(Session.PASSWORD))
+            if(isConnected())
+            getTask()
+        }
+
+        register.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
-        login.setOnClickListener{
-            val intent=Intent(this,TaskActivity::class.java)
-            startActivity(intent)
+
+        login.setOnClickListener {
+            if (isConnected()) {
+                getTask()
+            }
         }
     }
-    private fun initialise()
-    {
-        getInterest()
+
+    private fun initialise() {
         observeResponse()
     }
 
@@ -46,27 +58,43 @@ class MainActivity : TeamPhiApplication() {
     }
 
     private fun processResponse(response: Response?) {
-        when (response!!.status){
+        when (response!!.status) {
             Status.SUCCESS -> {
-                Log.v("Login","Api Call Successful")
+                Log.v("Login", "Api Call Successful")
+                progressDialog.dismiss()
                 processResult(response)
+
             }
             Status.ERROR -> {
-                Toast.makeText(this,"Invalid Id Password",Toast.LENGTH_LONG).show()
+                Toast.makeText(this, response.error.toString(), Toast.LENGTH_LONG).show()
             }
             Status.LOADING -> {
-                Log.v("Login","Loading")
+                Log.v("Login", "Loading")
+                progressDialog.setMessage("Logging in..")
+                progressDialog.setCancelable(false)
+                progressDialog.show()
             }
         }
     }
 
     private fun processResult(response: Response) {
-        val intent = Intent(this,TaskActivity::class.java)
-        startActivity(intent)
+        when (response.apiType) {
+            ApiType.LOGIN_USER -> {
+                val loginResult = response.result as LoginResult
+                if (loginResult.status == "Ok") {
+                    session.saveLoginDetails(loginResult.data?.token!!, loginResult.data.userName!!, loginResult.data.isAdmin!!, loginResult.data.expiresOn!!,password.text.toString())
+                    session.setIsLogedIn(true)
+                    val intent = Intent(this, TaskActivity::class.java)
+                    startActivity(intent)
+                } else if(loginResult.status == "Failed"){
+                    showToast("Incorrect Id and Password")
+                }
+            }
+        }
     }
 
-    private fun getInterest() {
-        mainActivityViewModel.getData(username.text.toString(),password.text.toString())
+    private fun getTask() {
+        mainActivityViewModel.getData(username.text.toString(), password.text.toString())
 
     }
 }

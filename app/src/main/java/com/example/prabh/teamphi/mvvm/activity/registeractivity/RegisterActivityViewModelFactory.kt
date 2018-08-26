@@ -1,4 +1,4 @@
-package com.example.prabh.teamphi.mvvm.activity.RegisterActivity
+package com.example.prabh.teamphi.mvvm.activity.registeractivity
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider

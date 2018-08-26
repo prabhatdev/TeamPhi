@@ -2,7 +2,7 @@ package com.example.prabh.teamphi.dagger.subcomponent
 
 import com.example.prabh.teamphi.dagger.scope.TaskActivityScope
 import com.example.prabh.teamphi.dagger.submodule.TaskActivityModule
-import com.example.prabh.teamphi.mvvm.activity.Task.TaskActivity
+import com.example.prabh.teamphi.mvvm.activity.taskactivity.TaskActivity
 import dagger.Subcomponent
 
 @TaskActivityScope

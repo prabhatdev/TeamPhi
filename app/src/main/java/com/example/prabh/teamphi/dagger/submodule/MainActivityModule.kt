@@ -14,7 +14,7 @@ class MainActivityModule {
 
     @Provides
     @MainActivityScope
-    fun provideMainActiityViewModelFactory(): MainActivityViewModelFactory= MainActivityViewModelFactory()
+    fun provideMainActivityViewModelFactory(): MainActivityViewModelFactory= MainActivityViewModelFactory()
 
     @Provides
     @MainActivityScope
