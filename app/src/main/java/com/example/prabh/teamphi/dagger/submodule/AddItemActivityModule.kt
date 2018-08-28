@@ -2,8 +2,8 @@ package com.example.prabh.teamphi.dagger.submodule
 
 import android.arch.lifecycle.ViewModelProviders
 import com.example.prabh.teamphi.dagger.scope.AddItemActivityScope
-import com.example.prabh.teamphi.mvvm.activity.AddTaskActivity.AddItemActivityViewModel
-import com.example.prabh.teamphi.mvvm.activity.AddTaskActivity.AddItemActivityViewModelFactory
+import com.example.prabh.teamphi.mvvm.activity.AddItemActivity.AddItemActivityViewModel
+import com.example.prabh.teamphi.mvvm.activity.AddItemActivity.AddItemActivityViewModelFactory
 import com.example.prabh.teamphi.mvvm.application.TeamPhiApplication
 import dagger.Module
 import dagger.Provides

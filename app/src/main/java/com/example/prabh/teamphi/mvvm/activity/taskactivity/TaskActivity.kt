@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.widget.EditText
@@ -18,10 +19,15 @@ import com.example.prabh.teamphi.utility.ApiType
 import com.example.prabh.teamphi.utility.Response
 import com.example.prabh.teamphi.utility.Session
 import com.example.prabh.teamphi.utility.Status
+import kotlinx.android.synthetic.main.activity_item.*
 import kotlinx.android.synthetic.main.activity_task.*
 import javax.inject.Inject
 
-class TaskActivity : TeamPhiApplication() {
+class TaskActivity : TeamPhiApplication(), SwipeRefreshLayout.OnRefreshListener {
+    override fun onRefresh() {
+        swipeRefreshLayoutTask.isRefreshing=true
+        getAllTasks()
+    }
 
     @Inject
     lateinit var taskActivityViewModel: TaskActivityViewModel
@@ -30,6 +36,19 @@ class TaskActivity : TeamPhiApplication() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_task)
         taskActivityComponent.inject(this)
+        onClickListeners()
+        swipeRefreshLayoutTask?.let {
+            swipeRefreshLayoutTask?.setOnRefreshListener(this)
+        }
+        initialise()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        onRefresh()
+    }
+
+    private fun onClickListeners() {
         add_task.setOnClickListener {
             val builder = AlertDialog.Builder(this@TaskActivity)
             builder.setTitle("Task Name")
@@ -48,7 +67,21 @@ class TaskActivity : TeamPhiApplication() {
             val dialogBox = builder.create()
             dialogBox.show()
         }
-        initialise()
+        logout_register.setOnClickListener {
+            val builder = AlertDialog.Builder(this@TaskActivity)
+            builder.setTitle("Are you sure you want to logout?")
+            builder.setPositiveButton("Yes") { dialog, which ->
+                session.setIsLogedIn(false)
+                val intent=Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            builder.setNegativeButton("No") { dialog, which ->
+            }
+            val dialogBox = builder.create()
+            dialogBox.show()
+
+        }
     }
 
     private fun initialise() {
@@ -72,17 +105,14 @@ class TaskActivity : TeamPhiApplication() {
             Status.SUCCESS -> {
                 Log.v("Register", "API call successful")
                 processResult(response)
-                progressDialog.dismiss()
+                swipeRefreshLayoutTask.isRefreshing=false
             }
             Status.ERROR -> {
                 Toast.makeText(this, response.error.toString(), Toast.LENGTH_LONG).show()
-                progressDialog.dismiss()
+                swipeRefreshLayoutTask.isRefreshing=false
             }
             Status.LOADING -> {
                 Log.v("Register", "API Loading")
-                progressDialog.setMessage("Loading...")
-                progressDialog.setCancelable(false)
-                progressDialog.show()
             }
         }
     }

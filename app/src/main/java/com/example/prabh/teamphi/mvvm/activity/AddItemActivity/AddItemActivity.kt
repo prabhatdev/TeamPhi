@@ -1,5 +1,6 @@
-package com.example.prabh.teamphi.mvvm.activity.AddTaskActivity
+package com.example.prabh.teamphi.mvvm.activity.AddItemActivity
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.arch.lifecycle.Observer
 import android.content.Intent
@@ -9,6 +10,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.example.prabh.teamphi.R
 import com.example.prabh.teamphi.mvvm.activity.itemactivity.ItemActivity
+import com.example.prabh.teamphi.mvvm.activity.mainactivity.MainActivity
 import com.example.prabh.teamphi.mvvm.application.TeamPhiApplication
 import com.example.prabh.teamphi.retrofit.model.AddItem
 import com.example.prabh.teamphi.retrofit.model.ItemType
@@ -17,11 +19,12 @@ import com.example.prabh.teamphi.utility.Response
 import com.example.prabh.teamphi.utility.Session
 import com.example.prabh.teamphi.utility.Status
 import kotlinx.android.synthetic.main.activity_add_item.*
+import kotlinx.android.synthetic.main.item_recycler.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
-class AddItemActivity : TeamPhiApplication(), AdapterView.OnItemSelectedListener {
+class AddItemActivity : TeamPhiApplication() {
 
     @Inject
     lateinit var addItemActivityViewModel: AddItemActivityViewModel
@@ -40,12 +43,40 @@ class AddItemActivity : TeamPhiApplication(), AdapterView.OnItemSelectedListener
         addItemComponent.inject(this)
         val intent = getIntent()
         taskId = intent.getStringExtra("TASK_ID")
-        submit_items.setOnClickListener {
-            addItemActivityViewModel.sendItems(session.getStringValue(Session.TOKEN), session.getStringValue(Session.USERNAME),
-                    taskId, get_item_name.text.toString(), itemType, item_price.text.toString().toDouble(), get_quantity.text.toString().toInt(),
-                    purchaseDate, bill_image.text.toString())
-        }
+        onClickListeners()
         initialise()
+    }
+
+    private fun onClickListeners() {
+        submit_items.setOnClickListener {
+
+            if (taskId.isEmpty() || get_item_name.text.isEmpty() || itemType.isEmpty() || item_price.text.isEmpty() || get_quantity.text.isEmpty() || purchaseDate.isEmpty() || bill_image.text.isEmpty()) {
+                showToast("Please fill all the details")
+            } else {
+                if (get_quantity.text.toString() == "0" || item_price.price.text.toString() == "0") {
+                    showToast("Quantity or Price can't be 0")
+                } else {
+                    addItemActivityViewModel.sendItems(session.getStringValue(Session.TOKEN), session.getStringValue(Session.USERNAME),
+                            taskId, get_item_name.text.toString(), itemType, item_price.text.toString().toDouble(), get_quantity.text.toString().toInt(),
+                            purchaseDate, bill_image.text.toString())
+                }
+            }
+        }
+        logout_add_item.setOnClickListener {
+            val builder = AlertDialog.Builder(this@AddItemActivity)
+            builder.setTitle("Are you sure you want to logout?")
+            builder.setPositiveButton("Yes") { dialog, which ->
+                session.setIsLogedIn(false)
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            builder.setNegativeButton("No") { dialog, which ->
+            }
+            val dialogBox = builder.create()
+            dialogBox.show()
+
+        }
     }
 
     private fun initialise() {
@@ -64,7 +95,6 @@ class AddItemActivity : TeamPhiApplication(), AdapterView.OnItemSelectedListener
             val myFormat = "dd/MM/yyyy"
             val sdf = SimpleDateFormat(myFormat, Locale.US)
             purchaseDate = sdf.format(cal.time)
-            showToast(purchaseDate)
             get_date_text.text = purchaseDate
         }
         calendar.setOnClickListener {
@@ -110,7 +140,9 @@ class AddItemActivity : TeamPhiApplication(), AdapterView.OnItemSelectedListener
                 if (addItem.status == "Ok" && addItem.data?.message == "Ok") {
                     showToast("Item Successfully Added")
                     val intent = Intent(this, ItemActivity::class.java)
+                    intent.putExtra("TASK_ID", taskId)
                     startActivity(intent)
+                    finish()
                 } else {
                     showToast(addItem.data?.message!!)
                 }
@@ -124,17 +156,26 @@ class AddItemActivity : TeamPhiApplication(), AdapterView.OnItemSelectedListener
         val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, data)
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         item_type.adapter = arrayAdapter
-    }
+        item_type.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                itemType = data!![position]
+            }
 
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        itemType = itemTypeList[position]
-    }
-
-    override fun onNothingSelected(parent: AdapterView<*>?) {
-        itemType = itemTypeList[0]
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                itemType = itemTypeList[0]
+                showToast(itemType)
+            }
+        }
     }
 
     private fun getItemType() {
         addItemActivityViewModel.getItemType(session.getStringValue(Session.TOKEN))
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, ItemActivity::class.java)
+        intent.putExtra("TASK_ID", taskId)
+        startActivity(intent)
+        finish()
     }
 }

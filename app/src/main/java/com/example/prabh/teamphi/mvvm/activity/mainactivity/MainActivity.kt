@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.example.prabh.teamphi.R
 import com.example.prabh.teamphi.mvvm.activity.registeractivity.RegisterActivity
@@ -33,6 +34,10 @@ class MainActivity : TeamPhiApplication() {
             password.setText(session.getStringValue(Session.PASSWORD))
             if(isConnected())
             getTask()
+        }
+        else
+        {
+            login_activity.visibility= View.VISIBLE
         }
 
         register.setOnClickListener {
@@ -86,6 +91,7 @@ class MainActivity : TeamPhiApplication() {
                     session.setIsLogedIn(true)
                     val intent = Intent(this, TaskActivity::class.java)
                     startActivity(intent)
+                    finish()
                 } else if(loginResult.status == "Failed"){
                     showToast("Incorrect Id and Password")
                 }

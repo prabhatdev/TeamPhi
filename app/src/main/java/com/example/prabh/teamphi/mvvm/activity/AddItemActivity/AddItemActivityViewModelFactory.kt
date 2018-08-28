@@ -1,8 +1,7 @@
-package com.example.prabh.teamphi.mvvm.activity.AddTaskActivity
+package com.example.prabh.teamphi.mvvm.activity.AddItemActivity
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import com.example.prabh.teamphi.mvvm.activity.mainactivity.MainActivityViewModel
 
 class AddItemActivityViewModelFactory:ViewModelProvider.Factory
 {

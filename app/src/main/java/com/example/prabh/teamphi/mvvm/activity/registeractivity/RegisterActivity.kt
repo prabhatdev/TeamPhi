@@ -57,11 +57,23 @@ class RegisterActivity : TeamPhiApplication() {
     }
 
     private fun processResult(response: Response) {
-        val intent = Intent(this, MainActivity::class.java)
         val registerUser=response.result as RegisterUser
-        Toast.makeText(this,registerUser.message,Toast.LENGTH_SHORT).show()
-        startActivity(intent)
-        finish()
+        if(registerUser.status=="Ok") {
+            if(registerUser.data!!.message=="Ok") {
+                showToast("Registered Successfully")
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            else
+            {
+                showToast(registerUser.data.message.toString())
+            }
+        }
+        else
+        {
+            showToast(registerUser.status.toString())
+        }
     }
 
     private fun registerUser() {

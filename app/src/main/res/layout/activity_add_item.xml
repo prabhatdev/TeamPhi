@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".mvvm.activity.AddTaskActivity.AddItemActivity">
+    tools:context=".mvvm.activity.AddItemActivity.AddItemActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -13,12 +13,25 @@
         android:background="@color/colorPrimary"
         android:elevation="8dp">
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/baloo"
-            android:text="Add Items"
-            android:textSize="25dp" />
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/baloo"
+                android:text="Tasks"
+                android:textSize="25dp" />
+
+            <ImageView
+                android:id="@+id/logout_add_item"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="220dp"
+                android:src="@drawable/logout"
+                />
+        </LinearLayout>
     </android.support.v7.widget.Toolbar>
 
     <android.support.design.widget.TextInputLayout
@@ -81,6 +94,7 @@
             android:layout_height="match_parent"
             android:fontFamily="@font/baloo"
             android:hint="Item Price"
+            android:inputType="number"
             android:textSize="14sp" />
     </android.support.design.widget.TextInputLayout>
 
@@ -100,6 +114,7 @@
             android:layout_height="match_parent"
             android:fontFamily="@font/baloo"
             android:hint="Quantity"
+            android:inputType="number"
             android:textSize="14sp" />
     </android.support.design.widget.TextInputLayout>
 
@@ -116,20 +131,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/item_name_layout"
+            android:layout_gravity="center"
             android:fontFamily="@font/baloo"
             android:text="Purchase Date"
-            android:textSize="15dp"
-            android:layout_gravity="center"/>
+            android:textSize="15dp" />
 
         <TextView
             android:id="@+id/get_date_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginStart="100dp"
             android:fontFamily="@font/baloo"
-            tools:text="28/08/2018"
             android:text="          "
-            android:layout_gravity="center"/>
+            tools:text="28/08/2018" />
 
         <ImageView
             android:id="@+id/calendar"
@@ -155,6 +170,7 @@
             android:layout_height="match_parent"
             android:fontFamily="@font/baloo"
             android:hint="Bill Image URL"
+            android:inputType="textUri"
             android:textSize="14sp" />
     </android.support.design.widget.TextInputLayout>
 

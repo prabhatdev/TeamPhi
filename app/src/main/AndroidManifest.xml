@@ -7,9 +7,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/team_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/team_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".mvvm.activity.mainactivity.MainActivity">
@@ -29,7 +29,7 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".mvvm.activity.AddTaskActivity.AddItemActivity" />
+        <activity android:name=".mvvm.activity.AddItemActivity.AddItemActivity" />
         <activity android:name=".mvvm.activity.itemactivity.ItemActivity"></activity>
     </application>
 

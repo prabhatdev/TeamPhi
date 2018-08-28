@@ -1,4 +1,4 @@
-package com.example.prabh.teamphi.mvvm.activity.AddTaskActivity
+package com.example.prabh.teamphi.mvvm.activity.AddItemActivity
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
