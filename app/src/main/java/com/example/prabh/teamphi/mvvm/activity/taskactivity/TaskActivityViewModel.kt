@@ -43,6 +43,9 @@ class TaskActivityViewModel : ViewModel() {
                         { throwable: Throwable? -> response.value = Response.error(ApiType.ADD_TASK, throwable!!) }
                 ))
     }
-
+    override fun onCleared() {
+        super.onCleared()
+        compositeDisposable.clear()
+    }
 
 }

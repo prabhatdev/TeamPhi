@@ -90,8 +90,9 @@ class ItemActivity : TeamPhiApplication(),SwipeRefreshLayout.OnRefreshListener {
                 processResult(response)
             }
             Status.ERROR -> {
-                Toast.makeText(this, response.error.toString(), Toast.LENGTH_LONG).show()
+                showToast("Re-logging in due to Ip Change")
                 swipeRefreshLayoutItem.isRefreshing=false
+                startActivity(Intent(this,MainActivity::class.java))
             }
             Status.LOADING -> {
                 Log.v("Items","Loading..")

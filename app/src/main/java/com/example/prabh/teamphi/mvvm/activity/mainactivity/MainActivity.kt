@@ -94,7 +94,10 @@ class MainActivity : TeamPhiApplication() {
                     finish()
                 } else if(loginResult.status == "Failed"){
                     showToast("Incorrect Id and Password")
+                    login_activity.visibility=View.VISIBLE
                 }
+            }
+            else -> {
             }
         }
     }

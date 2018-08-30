@@ -19,7 +19,6 @@ import com.example.prabh.teamphi.utility.Response
 import com.example.prabh.teamphi.utility.Session
 import com.example.prabh.teamphi.utility.Status
 import kotlinx.android.synthetic.main.activity_add_item.*
-import kotlinx.android.synthetic.main.item_recycler.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -53,7 +52,7 @@ class AddItemActivity : TeamPhiApplication() {
             if (taskId.isEmpty() || get_item_name.text.isEmpty() || itemType.isEmpty() || item_price.text.isEmpty() || get_quantity.text.isEmpty() || purchaseDate.isEmpty() || bill_image.text.isEmpty()) {
                 showToast("Please fill all the details")
             } else {
-                if (get_quantity.text.toString() == "0" || item_price.price.text.toString() == "0") {
+                if (get_quantity.text.toString() == "0" || item_price.text.toString() == "0") {
                     showToast("Quantity or Price can't be 0")
                 } else {
                     addItemActivityViewModel.sendItems(session.getStringValue(Session.TOKEN), session.getStringValue(Session.USERNAME),

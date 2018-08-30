@@ -108,8 +108,9 @@ class TaskActivity : TeamPhiApplication(), SwipeRefreshLayout.OnRefreshListener 
                 swipeRefreshLayoutTask.isRefreshing=false
             }
             Status.ERROR -> {
-                Toast.makeText(this, response.error.toString(), Toast.LENGTH_LONG).show()
+                showToast("Re-logging in due to Ip Change")
                 swipeRefreshLayoutTask.isRefreshing=false
+                startActivity(Intent(this,MainActivity::class.java))
             }
             Status.LOADING -> {
                 Log.v("Register", "API Loading")
