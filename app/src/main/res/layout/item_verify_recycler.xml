@@ -2,9 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="175dp"
-    android:layout_centerHorizontal="true">
+    android:layout_width="wrap_content"
+    android:layout_height="275dp"
+    android:layout_centerHorizontal="true"
+    android:clipToPadding="false">
 
     <android.support.v7.widget.CardView
         android:id="@+id/item"
@@ -13,24 +14,24 @@
         android:layout_margin="10dp"
         android:clickable="true"
         android:foreground="?android:attr/selectableItemBackground"
-        app:cardBackgroundColor="#d9d9d9"
+        app:cardBackgroundColor="#def1e3"
         app:cardCornerRadius="10dp"
         app:cardElevation="10dp">
 
         <View
             android:id="@+id/rectangle_is_approved"
             android:layout_width="18dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:background="#33cc33" />
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="14dp">
 
             <TextView
-                android:id="@+id/item_name"
+                android:id="@+id/item_name_verify"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
@@ -45,18 +46,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/item_name"
+                android:layout_below="@+id/item_name_verify"
                 android:layout_marginLeft="10dp"
                 android:fontFamily="@font/baloo"
                 android:text="Item Type:"
                 android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/type"
+                android:id="@+id/type_verify"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/quantity_items"
-                android:layout_below="@+id/item_name"
+                android:layout_alignStart="@+id/quantity_items_verify"
+                android:layout_below="@+id/item_name_verify"
                 android:fontFamily="@font/baloo"
                 android:textSize="15sp"
                 tools:text="100" />
@@ -73,10 +74,10 @@
                 android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/price"
+                android:id="@+id/price_verify"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/quantity_items"
+                android:layout_alignStart="@+id/quantity_items_verify"
                 android:layout_below="@id/type_text"
                 android:fontFamily="@font/baloo"
                 android:textSize="15sp"
@@ -94,7 +95,7 @@
                 android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/quantity_items"
+                android:id="@+id/quantity_items_verify"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -112,18 +113,61 @@
                 android:layout_below="@+id/quantity_text"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/baloo"
-                android:text="Purchase Date:"
+                android:text="Requested Date"
                 android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/date"
+                android:id="@+id/date_verify"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/quantity_items"
+                android:layout_alignStart="@+id/quantity_items_verify"
                 android:layout_below="@+id/quantity_text"
                 android:fontFamily="@font/baloo"
                 android:textSize="15sp"
                 tools:text="25/05/1998" />
+
+            <TextView
+                android:id="@+id/requested_by_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/date_text"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/baloo"
+                android:text="Requested By"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/requested_by_verify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/quantity_items_verify"
+                android:layout_below="@+id/date_text"
+                android:fontFamily="@font/baloo"
+                android:textSize="15sp"
+                tools:text="Prabhatgfhfghfhfghfgdrfweerwrhfg" />
+
+            <ImageView
+                android:id="@+id/reject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/requested_by_verify"
+
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="227dp"
+                android:background="@drawable/circle_reject"
+                android:src="@drawable/ic_reject" />
+
+            <ImageView
+                android:id="@+id/accept"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/requested_by_verify"
+                android:layout_marginStart="62.5dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/circle_accept"
+                android:src="@drawable/ic_accept" />
         </RelativeLayout>
+
     </android.support.v7.widget.CardView>
 </RelativeLayout>

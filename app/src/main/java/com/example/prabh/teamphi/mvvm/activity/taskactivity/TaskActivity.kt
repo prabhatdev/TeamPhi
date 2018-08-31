@@ -24,11 +24,6 @@ import kotlinx.android.synthetic.main.activity_task.*
 import javax.inject.Inject
 
 class TaskActivity : TeamPhiApplication(), SwipeRefreshLayout.OnRefreshListener {
-    override fun onRefresh() {
-        swipeRefreshLayoutTask.isRefreshing=true
-        getAllTasks()
-    }
-
     @Inject
     lateinit var taskActivityViewModel: TaskActivityViewModel
 
@@ -98,6 +93,11 @@ class TaskActivity : TeamPhiApplication(), SwipeRefreshLayout.OnRefreshListener 
             processResponse(it)
         })
 
+    }
+
+    override fun onRefresh() {
+        swipeRefreshLayoutTask.isRefreshing=true
+        getAllTasks()
     }
 
     private fun processResponse(response: Response?) {

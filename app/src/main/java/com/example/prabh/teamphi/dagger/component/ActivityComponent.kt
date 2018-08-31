@@ -22,4 +22,6 @@ interface ActivityComponent{
     fun plusAddItemActivityComponent(addItemActivityModule: AddItemActivityModule):AddItemActivityComponent
 
     fun plusItemActivityComponent(itemActivityModule: ItemActivityModule):ItemActivityComponent
+
+    fun plusAdminLoginActivityComponent(loginActivityModule: AdminLoginActivityModule):AdminLoginActivityComponent
 }

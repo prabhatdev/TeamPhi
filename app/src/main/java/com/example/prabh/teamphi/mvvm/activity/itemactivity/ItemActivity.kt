@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
-import android.widget.Toast
 import com.example.prabh.teamphi.R
 import com.example.prabh.teamphi.mvvm.activity.AddItemActivity.AddItemActivity
 import com.example.prabh.teamphi.mvvm.activity.mainactivity.MainActivity
@@ -17,24 +16,23 @@ import com.example.prabh.teamphi.utility.ApiType
 import com.example.prabh.teamphi.utility.Response
 import com.example.prabh.teamphi.utility.Session
 import com.example.prabh.teamphi.utility.Status
-import kotlinx.android.synthetic.main.activity_add_item.*
 import kotlinx.android.synthetic.main.activity_item.*
-import kotlinx.android.synthetic.main.activity_task.*
 import javax.inject.Inject
 
 
-class ItemActivity : TeamPhiApplication(),SwipeRefreshLayout.OnRefreshListener {
+class ItemActivity : TeamPhiApplication(), SwipeRefreshLayout.OnRefreshListener {
     @Inject
     lateinit var itemActivityViewModel: ItemActivityViewModel
 
-    private var taskId = String()
+    private var taskIdTasks = String()
+    private var taskIdItems = String()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item)
         itemActivityComponent.inject(this)
         val intent = getIntent()
-        taskId = intent.getStringExtra("TASK_ID")!!
+        taskIdTasks = intent.getStringExtra("TASK_ID")!!
         initialise()
         onClickListeners()
     }
@@ -44,8 +42,8 @@ class ItemActivity : TeamPhiApplication(),SwipeRefreshLayout.OnRefreshListener {
             swipeRefreshLayoutItem?.setOnRefreshListener(this)
         }
         add_items.setOnClickListener {
-            val intent= Intent(this, AddItemActivity::class.java)
-            intent.putExtra("TASK_ID",taskId)
+            val intent = Intent(this, AddItemActivity::class.java)
+            intent.putExtra("TASK_ID", taskIdTasks)
             startActivity(intent)
             finish()
         }
@@ -54,7 +52,7 @@ class ItemActivity : TeamPhiApplication(),SwipeRefreshLayout.OnRefreshListener {
             builder.setTitle("Are you sure you want to logout?")
             builder.setPositiveButton("Yes") { dialog, which ->
                 session.setIsLogedIn(false)
-                val intent=Intent(this, MainActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
             }
@@ -62,12 +60,11 @@ class ItemActivity : TeamPhiApplication(),SwipeRefreshLayout.OnRefreshListener {
             }
             val dialogBox = builder.create()
             dialogBox.show()
-
         }
     }
 
     override fun onRefresh() {
-        swipeRefreshLayoutItem.isRefreshing=true
+        swipeRefreshLayoutItem.isRefreshing = true
         getItems()
     }
 
@@ -86,16 +83,16 @@ class ItemActivity : TeamPhiApplication(),SwipeRefreshLayout.OnRefreshListener {
     private fun processResponse(response: Response?) {
         when (response!!.status) {
             Status.SUCCESS -> {
-                swipeRefreshLayoutItem.isRefreshing=false
+                swipeRefreshLayoutItem.isRefreshing = false
                 processResult(response)
             }
             Status.ERROR -> {
                 showToast("Re-logging in due to Ip Change")
-                swipeRefreshLayoutItem.isRefreshing=false
-                startActivity(Intent(this,MainActivity::class.java))
+                swipeRefreshLayoutItem.isRefreshing = false
+                startActivity(Intent(this, MainActivity::class.java))
             }
             Status.LOADING -> {
-                Log.v("Items","Loading..")
+                Log.v("Items", "Loading..")
             }
         }
     }
@@ -124,6 +121,6 @@ class ItemActivity : TeamPhiApplication(),SwipeRefreshLayout.OnRefreshListener {
     }
 
     private fun getItems() {
-        itemActivityViewModel.getItems(session.getStringValue(Session.TOKEN), taskId)
+        itemActivityViewModel.getItems(session.getStringValue(Session.TOKEN), taskIdTasks)
     }
 }

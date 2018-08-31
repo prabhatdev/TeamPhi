@@ -30,7 +30,8 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity android:name=".mvvm.activity.AddItemActivity.AddItemActivity" />
-        <activity android:name=".mvvm.activity.itemactivity.ItemActivity"></activity>
+        <activity android:name=".mvvm.activity.itemactivity.ItemActivity" />
+        <activity android:name=".mvvm.activity.adminactivity.AdminLoginActivity"></activity>
     </application>
 
 </manifest>

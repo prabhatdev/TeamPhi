@@ -53,6 +53,10 @@ abstract class TeamPhiApplication : AppCompatActivity() {
         activityComponent.plusItemActivityComponent(ItemActivityModule())
     }
 
+    val adminLoginActivityComponent:AdminLoginActivityComponent by lazy {
+        activityComponent.plusAdminLoginActivityComponent(AdminLoginActivityModule())
+    }
+
     fun isConnected() = utils.isInternetAvailable(this)
 
     fun showToast(message: String, length: Int = Toast.LENGTH_SHORT) = Utils.showToast(this, message, length)

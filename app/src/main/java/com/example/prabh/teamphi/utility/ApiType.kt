@@ -7,5 +7,7 @@ enum class ApiType{
     GET_TASK,
     GET_ITEM_TYPE,
     GET_ITEM,
-    ADD_ITEM
+    ADD_ITEM,
+    GET_ITEM_VERIFICATION,
+    APPROVE_ITEM
 }

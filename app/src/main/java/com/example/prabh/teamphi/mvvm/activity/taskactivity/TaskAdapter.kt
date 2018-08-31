@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.example.prabh.teamphi.R
 import com.example.prabh.teamphi.mvvm.activity.itemactivity.ItemActivity
 import com.example.prabh.teamphi.retrofit.model.Tasks
+import com.example.prabh.teamphi.utility.Session
 import kotlinx.android.synthetic.main.task_recycler.view.*
 
 
@@ -37,5 +38,4 @@ class TaskAdapter(val tasks: ArrayList<Tasks>) : RecyclerView.Adapter<TaskAdapte
             }
         }
     }
-
 }

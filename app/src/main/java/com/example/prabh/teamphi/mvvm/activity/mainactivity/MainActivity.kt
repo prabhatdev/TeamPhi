@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.example.prabh.teamphi.R
+import com.example.prabh.teamphi.mvvm.activity.adminactivity.AdminLoginActivity
 import com.example.prabh.teamphi.mvvm.activity.registeractivity.RegisterActivity
 import com.example.prabh.teamphi.mvvm.activity.taskactivity.TaskActivity
 import com.example.prabh.teamphi.mvvm.application.TeamPhiApplication
@@ -87,11 +88,18 @@ class MainActivity : TeamPhiApplication() {
             ApiType.LOGIN_USER -> {
                 val loginResult = response.result as LoginResult
                 if (loginResult.status == "Ok") {
-                    session.saveLoginDetails(loginResult.data?.token!!, loginResult.data.userName!!, loginResult.data.isAdmin!!, loginResult.data.expiresOn!!,password.text.toString())
+                    session.saveLoginDetails(loginResult.data?.token!!, loginResult.data.userName!!, loginResult.data.isAdmin.toString(), loginResult.data.expiresOn!!, password.text.toString())
                     session.setIsLogedIn(true)
-                    val intent = Intent(this, TaskActivity::class.java)
-                    startActivity(intent)
-                    finish()
+                    if(!loginResult.data?.isAdmin!!) {
+                        val intent = Intent(this, TaskActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                    else
+                    {
+                        startActivity(Intent(this,AdminLoginActivity::class.java))
+                        finish()
+                    }
                 } else if(loginResult.status == "Failed"){
                     showToast("Incorrect Id and Password")
                     login_activity.visibility=View.VISIBLE

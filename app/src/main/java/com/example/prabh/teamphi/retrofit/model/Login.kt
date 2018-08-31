@@ -11,7 +11,7 @@ class Login {
 
     @SerializedName("isAdmin")
     @Expose
-    val isAdmin : String? = null
+    val isAdmin : Boolean? = null
 
     @SerializedName("Token")
     @Expose

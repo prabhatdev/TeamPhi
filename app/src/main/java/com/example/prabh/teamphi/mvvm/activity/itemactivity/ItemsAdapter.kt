@@ -1,7 +1,6 @@
 package com.example.prabh.teamphi.mvvm.activity.itemactivity
 
 import android.graphics.Color
-import android.graphics.Color.RED
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -26,11 +25,12 @@ class ItemsAdapter(val items: ArrayList<Item>) : RecyclerView.Adapter<ItemsAdapt
             itemView.item_name.text = bill_items.itemName
             itemView.price.text = bill_items.price
             itemView.type.text = bill_items.itemType
-            itemView.quantity.text = bill_items.quantity
-            itemView.date.text = bill_items.purchaseDate?.subSequence(0,10)
-            if(!bill_items.isApproved!!)
-            {
-                itemView.rectangle_is_approved.setBackgroundColor(Color.parseColor("#FF0000"))
+            itemView.quantity_items.text = bill_items.quantity
+            itemView.date.text = bill_items.purchaseDate?.subSequence(0, 10)
+            if (!bill_items.isApproved!!) {
+                itemView.rectangle_is_approved.setBackgroundColor(Color.parseColor("#FFB71717"))
+            } else {
+                itemView.rectangle_is_approved.setBackgroundColor(Color.parseColor("#7ad47a"))
             }
         }
     }
